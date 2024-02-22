@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from PIL import Image
 
+#Step 1: Explore and Understand the Dataset
 # Load annotations
 train_annotations = pd.read_csv('/Users/paramanandbhat/Downloads/dataset_pascalVOCDetection-200625-193221/train.csv')
 
@@ -20,3 +21,5 @@ def visualize_image(image_path, annotations):
         ax.add_patch(rect)
     plt.show()
 
+#Step 2: Preprocess the Data
+    
