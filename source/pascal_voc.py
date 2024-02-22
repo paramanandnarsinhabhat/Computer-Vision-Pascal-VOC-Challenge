@@ -8,3 +8,10 @@ import os
 import pandas as pd
 from PIL import Image
 
+# Define transforms for the dataset
+transform = transforms.Compose([
+    transforms.ToTensor()
+])
+
+# Load the dataset
+train_dataset = '/Users/paramanandbhat/Downloads/dataset_pascalVOCDetection-200625-193221/train_images'
