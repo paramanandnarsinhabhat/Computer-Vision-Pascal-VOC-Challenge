@@ -22,4 +22,39 @@ def visualize_image(image_path, annotations):
     plt.show()
 
 #Step 2: Preprocess the Data
-    
+from torch.utils.data import Dataset, DataLoader
+from torchvision import transforms
+import os
+import torch
+
+class VOCDataset(Dataset):
+    def __init__(self, csv_file, img_dir, transform=None):
+        self.annotations = pd.read_csv(csv_file)
+        self.img_dir = img_dir
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.annotations)
+
+    def __getitem__(self, index):
+        img_id = self.annotations.iloc[index, 0]
+        img = Image.open(os.path.join(self.img_dir, img_id)).convert("RGB")
+        boxes = self.annotations[self.annotations['image_name'] == img_id][['xmin', 'ymin', 'xmax', 'ymax']].values
+        boxes = torch.as_tensor(boxes, dtype=torch.float32)
+        labels = torch.ones((boxes.shape[0],), dtype=torch.int64)  # Assuming all objects are of a single class
+        
+        if self.transform:
+            img = self.transform(img)
+        
+        target = {}
+        target['boxes'] = boxes
+        target['labels'] = labels
+        
+        return img, target
+
+# Transforms
+transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+])
+
