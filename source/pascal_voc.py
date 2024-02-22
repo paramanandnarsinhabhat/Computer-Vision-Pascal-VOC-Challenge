@@ -7,6 +7,7 @@ from torchvision.datasets import ImageFolder
 import os
 import pandas as pd
 from PIL import Image
+import os
 
 # Define transforms for the dataset
 transform = transforms.Compose([
@@ -14,4 +15,6 @@ transform = transforms.Compose([
 ])
 
 # Load the dataset
-train_dataset = '/Users/paramanandbhat/Downloads/dataset_pascalVOCDetection-200625-193221/train_images'
+folder_path_train = '/Users/paramanandbhat/Downloads/dataset_pascalVOCDetection-200625-193221/train_images'
+
+
