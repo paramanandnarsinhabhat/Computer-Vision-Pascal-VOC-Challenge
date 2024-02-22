@@ -1,20 +1,9 @@
-import torch
-import torchvision
-from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
-from torchvision.transforms import transforms
-from torch.utils.data import DataLoader
-from torchvision.datasets import ImageFolder
-import os
-import pandas as pd
-from PIL import Image
-import os
+import torchvision.models as models
+import torchvision.transforms as transforms
 
-# Define transforms for the dataset
-transform = transforms.Compose([
-    transforms.ToTensor()
-])
+# Load a pretrained model, e.g., Faster R-CNN
+model = models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
 
-# Load the dataset
-folder_path_train = '/Users/paramanandbhat/Downloads/dataset_pascalVOCDetection-200625-193221/train_images'
+
 
 
