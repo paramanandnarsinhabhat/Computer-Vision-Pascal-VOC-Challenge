@@ -1,11 +1,9 @@
-import torchvision.models as models
-import torchvision.transforms as transforms
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from PIL import Image
 
-# Load a pretrained model, e.g., Faster R-CNN
-model = models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+# Load annotations
+train_annotations = pd.read_csv('/Users/paramanandbhat/Downloads/dataset_pascalVOCDetection-200625-193221/train.csv')
 
-model.eval()  # Set the model to inference mode
-
-
-
-
+print(train_annotations.head())
